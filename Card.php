@@ -25,14 +25,14 @@ class Card
    public function setNumber($number)
    {
       if (!is_numeric($number) || mb_strlen($number) < 10) return false;
-      return $this->number;
+      $this->number = $number;
    }
 
    // function Type 
    public function setType($type)
    {
       if (is_numeric($type)) return false;
-      return $this->type;
+      $this->type = $type;
    }
    public function getType()
    {
@@ -48,32 +48,21 @@ class Card
    public function setDate($date)
    {
       if (!is_numeric($date) || $date < 2000) return false;
-      return $this->date;
+      $this->date = $date;
+
+      echo 'La tua carta non é valida';
    }
 
    // function Balance 
    public function setBalance($balance)
    {
       if ($balance <= 0 || !is_numeric($balance)) return false;
-      return $this->balance;
+      $this->balance = $balance;
    }
    public function getBalance()
    {
       return $this->balance;
    }
 
-   // Function Paymant
-   public function paymant($amount)
-   {
-      if (!is_numeric($amount) || $amount < $this->balance) return false;
-
-      $this->balance -= $amount;
-   }
-
-   // Function upgradeBalance
-   public function upgradeBalance($amount)
-   {
-      if (!$amount || !is_numeric($amount) || $amount > $this->balance) return false;
-      $this->balance -= $amount;
-   }
+   
 }

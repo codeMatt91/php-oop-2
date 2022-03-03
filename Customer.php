@@ -9,12 +9,12 @@ class Customer extends Person
 
    public $signed;
    public $card;
-   public $product;
 
-   public function __construct($card, $product, $signed = false)
+
+   public function __construct($name, $last_name, $age, $card, $signed = false)
    {
+      parent::__construct($name, $last_name, $age);
       $this->setCard($card);
-      $this->setProduct($product);
    }
 
    // Function setCard
@@ -29,14 +29,22 @@ class Customer extends Person
       return $this->card;
    }
 
-   //Function Product
-   public function setProduct($product){
-      if($product instanceof Product === false || is_numeric($product)) return false;
-      $this->product = $product;
+   // Function Paymant
+   public function paymant($amount)
+   {
+      if (!is_numeric($amount) || $amount < $this->balance) return false;
+
+      $this->balance -= $amount;
+
+      echo "Pagamento andato a buon fine";
    }
 
-   public function getProduct()
+   // Function upgradeBalance
+   public function upgradeBalance($amount)
    {
-      return $this->product;
+      if (!$amount || !is_numeric($amount) || $amount > $this->balance) return false;
+      $this->balance -= $amount;
+
+      echo "Saldo aggiornato: " . $this->balance;
    }
 }

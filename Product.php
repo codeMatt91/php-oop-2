@@ -1,15 +1,16 @@
-<?php 
+<?php
 
-class Product {
+class Product
+{
    public $price;
    public $type;
    public $animal;
 
    public function __construct($price, $type, $animal)
    {
-     $this->setPrice($price);
-     $this->setType($type);
-     $this->setAnimal($animal);
+      $this->setPrice($price);
+      $this->setType($type);
+      $this->setAnimal($animal);
    }
 
    // function Price 
@@ -21,7 +22,7 @@ class Product {
    public function setPrice($price)
    {
       if (!is_numeric($price) || $price <= 0) return false;
-      return $this->price;
+      $this->price = $price;
    }
 
    // function Type 
@@ -33,18 +34,18 @@ class Product {
    public function setType($type)
    {
       if (is_numeric($type)) return false;
-      return $this->type;
+      $this->type = $type;
    }
 
    // function Animal 
    public function getAnimal()
    {
-      return $this->Animal;
+      return $this->animal;
    }
 
    public function setAnimal($animal)
    {
       if (is_numeric($animal)) return false;
-      return $this->animal;
+      $this->animal = $animal;
    }
 }
