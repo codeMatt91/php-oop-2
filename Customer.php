@@ -9,12 +9,16 @@ class Customer extends Person
 
    public $signed;
    public $card;
+   public $credit_card;
 
 
-   public function __construct($name, $last_name, $age, $card, $signed = false)
+   public function __construct($name, $last_name, $age, $card, $credit_card, $signed = false)
    {
       parent::__construct($name, $last_name, $age);
       $this->setCard($card);
+      $this->setCreditCard($credit_card);
+      $this->credit_card = $credit_card;
+      $this->signed = $signed;
    }
 
    // Function setCard
@@ -29,22 +33,25 @@ class Customer extends Person
       return $this->card;
    }
 
+   public function setCreditCard($total)
+   {
+      if (!is_numeric($total) || $total < 0) return false;
+      $this->credit_card = $total;
+   }
+   public function getCreditCard()
+   {
+      return $this->credit_card;
+   }
    // Function Paymant
    public function paymant($amount)
    {
-      if (!is_numeric($amount) || $amount < $this->balance) return false;
+     
+      $success = $this->card->paymant($amount);
+      if (!$success) return false;
+      $total = $this->credit_card - $amount;
+      $this->setCreditCard($total);
 
-      $this->balance -= $amount;
 
       echo "Pagamento andato a buon fine";
-   }
-
-   // Function upgradeBalance
-   public function upgradeBalance($amount)
-   {
-      if (!$amount || !is_numeric($amount) || $amount > $this->balance) return false;
-      $this->balance -= $amount;
-
-      echo "Saldo aggiornato: " . $this->balance;
    }
 }

@@ -50,7 +50,7 @@ class Card
       if (!is_numeric($date) || $date < 2000) return false;
       $this->date = $date;
 
-      echo 'La tua carta non é valida';
+      echo 'La tua carta é valida';
    }
 
    // function Balance 
@@ -59,10 +59,16 @@ class Card
       if ($balance <= 0 || !is_numeric($balance)) return false;
       $this->balance = $balance;
    }
+
    public function getBalance()
    {
       return $this->balance;
    }
 
-   
+   public function paymant($amount)
+   {
+      if (!is_numeric($amount) || $this->balance < $amount) return false;
+
+      $this->balance -= $amount;
+   }
 }
