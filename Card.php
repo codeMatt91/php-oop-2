@@ -10,10 +10,10 @@ class Card
 
    public function __construct($number, $type, $date, $balance)
    {
-      $this->number = $number;
-      $this->type = $type;
-      $this->date = $date;
-      $this->balance = $balance;
+      $this->setNumber($number);
+      $this->setType($type);
+      $this->setDate($date);
+      $this->setBalance($balance);
    }
 
    // function Number 
@@ -24,7 +24,7 @@ class Card
 
    public function setNumber($number)
    {
-      if (!is_numeric($number) || mb_strlen($number)) return false;
+      if (!is_numeric($number) || mb_strlen($number) < 10) return false;
       return $this->number;
    }
 
@@ -62,10 +62,18 @@ class Card
       return $this->balance;
    }
 
-   public function withdraw($amount)
+   // Function Paymant
+   public function paymant($amount)
    {
       if (!is_numeric($amount) || $amount < $this->balance) return false;
 
+      $this->balance -= $amount;
+   }
+
+   // Function upgradeBalance
+   public function upgradeBalance($amount)
+   {
+      if (!$amount || !is_numeric($amount) || $amount > $this->balance) return false;
       $this->balance -= $amount;
    }
 }
