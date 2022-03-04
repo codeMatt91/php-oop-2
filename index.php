@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/Person.php';
-require_once __DIR__ . '/Card.php';
+require_once __DIR__ . '/CreditCard.php';
 require_once __DIR__ . '/Product.php';
 require_once __DIR__ . '/Customer.php';
 

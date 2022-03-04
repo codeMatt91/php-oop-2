@@ -26,7 +26,6 @@ trait Person
 
    public function getLastName()
    {
-
       return $this->last_name;
    }
 }
