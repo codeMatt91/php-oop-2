@@ -1,6 +1,6 @@
 <?php
 
-class Card
+class CreditCard
 {
 
    public $number;
@@ -47,7 +47,10 @@ class Card
 
    public function setDate($date)
    {
-      if (!is_numeric($date) || $date < 2000) return false;
+      if (!is_numeric($date) || $date < 2000) {
+         echo 'La carta non è valida';
+         return false;
+      }
       $this->date = $date;
 
       echo 'La tua carta é valida';

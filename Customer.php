@@ -1,20 +1,23 @@
 <?php
 
 require_once __DIR__ . '/Person.php';
-require_once __DIR__ . '/Card.php';
+require_once __DIR__ . '/CreditCard.php';
 require_once __DIR__ . '/Product.php';
 
-class Customer extends Person
+class Customer
 {
+
+   use Person;
 
    public $signed;
    public $card;
    public $credit_card;
 
 
-   public function __construct($name, $last_name, $age, $card, $credit_card, $signed = false)
+   public function __construct($name, $last_name, $card, $credit_card, $signed = false)
    {
-      parent::__construct($name, $last_name, $age);
+      $this->setName($name);
+      $this->setLastName($last_name);
       $this->setCard($card);
       $this->setCreditCard($credit_card);
       $this->credit_card = $credit_card;
@@ -24,7 +27,7 @@ class Customer extends Person
    // Function setCard
    public function setCard($card)
    {
-      if ($card instanceof Card === false) return false;
+      if ($card instanceof CreditCard === false) return false;
       $this->card = $card;
    }
 
@@ -45,7 +48,7 @@ class Customer extends Person
    // Function Paymant
    public function paymant($amount)
    {
-     
+
       $success = $this->card->paymant($amount);
       if (!$success) return false;
       $total = $this->credit_card - $amount;

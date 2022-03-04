@@ -1,17 +1,32 @@
 <?php
 
-class Person
+trait Person
 {
    public $name;
    public $last_name;
-   public $age;
 
-   public function __construct($name, $last_name, $age)
+
+   public function setName($name)
    {
+      if (is_numeric($name)) return false;
       $this->name = $name;
-      $this->last_name = $last_name;
-      $this->age = $age;
    }
 
-   
+   public function getName()
+   {
+
+      return $this->name;
+   }
+
+   public function setLastName($last_name)
+   {
+      if (is_numeric($last_name)) return false;
+      $this->last_name = $last_name;
+   }
+
+   public function getLastName()
+   {
+
+      return $this->last_name;
+   }
 }
