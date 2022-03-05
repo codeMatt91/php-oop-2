@@ -11,5 +11,6 @@ var_dump($collare);
 $customer_1 = new Customer('Mario', 'Rossi', $card_1, $signed = true);
 var_dump($customer_1);
 
+
 $customer_1->paymant($collare->price);
 var_dump($customer_1);

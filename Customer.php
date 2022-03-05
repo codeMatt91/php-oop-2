@@ -23,15 +23,11 @@ class Customer
       $this->signed = $signed;
    }
 
-   public function setCreditCard($credit_card)
-   {
-      if (!is_numeric($credit_card) || $credit_card < 0) return false;
-      $this->credit_card = $credit_card;
-   }
-   protected function modifyCreditCard($total)
+
+   protected function setCreditCard($total)
    {
       if (!is_numeric($total) || $total < 0) return false;
-      $this->credit_card = $total;
+      $this->credit_card->balance = $total;
    }
    public function getCreditCard()
    {
@@ -41,10 +37,8 @@ class Customer
    public function paymant($amount)
    {
 
-      $success = $this->card->paymant($amount);
-      if (!$success) return false;
-      $total = $this->credit_card - $amount;
-      $this->modifyCreditCard($total);
+      $total = $this->credit_card->balance - $amount;
+      $this->setCreditCard($total);
 
 
       echo "Pagamento andato a buon fine";
